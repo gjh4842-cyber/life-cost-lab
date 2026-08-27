@@ -4,9 +4,9 @@
  */
 export const siteConfig = {
   siteName: "한결생활 가이드",
-  domain: "",
+  domain: "https://xn--v69a23sc9g7wd.kr",
   contactEmail: "",
-  operatorName: "",
+  operatorName: "생활비랩",
   // Google Analytics 4 측정 ID 예시: G-XXXXXXXXXX. 비워 두면 관련 스크립트를 불러오지 않습니다.
   googleAnalyticsId: "",
   // Google AdSense 클라이언트 ID 예시: ca-pub-XXXXXXXXXXXXXXXX. 비워 두면 관련 스크립트와 ads.txt가 생성되지 않습니다.
