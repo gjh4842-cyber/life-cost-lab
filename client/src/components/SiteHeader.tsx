@@ -47,11 +47,9 @@ export function SiteHeader() {
       <header className="site-header">
         <div className="site-header__inner">
           <Link className="brand" href="/" aria-label="생활비랩 홈">
-            <img
-              className="brand__mark"
-              src="/manus-storage/trusted-life-guide-mark_0491c4bb.png"
-              alt="생활비랩 심볼"
-            />
+            <span className="brand__mark" aria-hidden="true">
+              랩
+            </span>
             <span className="brand__copy">
               <strong>생활비랩</strong>
               <em>생활비 절약 정보</em>
