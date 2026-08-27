@@ -1,4 +1,4 @@
-export type Category = { slug: string; name: string; shortName: string; description: string; accent: string; icon: "wallet" | "heart" | "smartphone" | "house" };
+export type Category = { slug: string; name: string; shortName: string; description: string; accent: string; icon: "wallet" | "heart" | "smartphone" | "house" | "briefcase" | "file" };
 export type ArticleSection = { heading: string; paragraphs: string[]; points?: string[] };
 export type Article = { slug: string; category: string; title: string; excerpt: string; publishedAt: string; reviewedAt: string; readTime: string; featured?: boolean; sections: ArticleSection[] };
 
@@ -7,6 +7,8 @@ export const categories: Category[] = [
   { slug: "health", name: "건강·돌봄", shortName: "건강·돌봄", description: "검진 준비와 일상 관리, 돌봄을 위한 확인 순서를 함께 살펴봅니다.", accent: "olive", icon: "heart" },
   { slug: "digital", name: "일상·디지털", shortName: "일상·디지털", description: "휴대폰과 온라인 서비스에서 필요한 기능을 쉬운 말로 안내합니다.", accent: "blue", icon: "smartphone" },
   { slug: "home", name: "주거·안전", shortName: "주거·안전", description: "집과 계약, 생활 안전에서 확인해야 할 기본 기준을 모았습니다.", accent: "gold", icon: "house" },
+  { slug: "work", name: "일·경력", shortName: "일·경력", description: "이직과 경력 정리, 일하면서 챙겨야 할 기본 서류를 쉽게 안내합니다.", accent: "terracotta", icon: "briefcase" },
+  { slug: "public", name: "행정·서류", shortName: "행정·서류", description: "증명서와 공공서비스를 이용하기 전 확인할 순서를 차분히 정리합니다.", accent: "olive", icon: "file" },
 ];
 
 export const articles: Article[] = [
@@ -30,6 +32,14 @@ export const articles: Article[] = [
   { slug: "reduce-household-fixed-costs", category: "money", title: "매달 나가는 고정비, 부담 없이 점검하는 방법", excerpt: "통신비·보험료·구독 서비스처럼 매달 자동으로 나가는 항목을 한 번에 점검해 보세요.", publishedAt: "2026. 08. 09.", reviewedAt: "2026. 08. 10.", readTime: "4분 읽기", sections: [
     { heading: "최근 한 달의 내역을 한곳에 모읍니다", paragraphs: ["고정비를 줄이려면 먼저 무엇이 나가고 있는지 정확히 알아야 합니다. 통장 거래내역이나 카드 명세서에서 반복되는 결제 항목만 표시해 보세요.", "바로 해지하기보다 계약 기간, 해지 수수료, 꼭 필요한 서비스인지를 순서대로 확인하면 실수를 줄일 수 있습니다."] },
     { heading: "변경 전후를 한 달 동안 비교합니다", paragraphs: ["한 번에 여러 항목을 바꾸면 무엇이 달라졌는지 파악하기 어렵습니다. 한두 가지부터 바꾸고 다음 달 내역을 비교해 보는 방식이 현실적입니다."] },
+  ] },
+  { slug: "organize-career-documents-before-changing-jobs", category: "work", title: "이직을 준비할 때, 경력 관련 서류를 정리하는 순서", excerpt: "급하게 필요해지기 전, 경력과 고용 관련 기록을 어디에서 어떻게 확인할지 차분히 정리해 보세요.", publishedAt: "2026. 08. 06.", reviewedAt: "2026. 08. 07.", readTime: "4분 읽기", sections: [
+    { heading: "지금 가지고 있는 기록부터 한곳에 모읍니다", paragraphs: ["재직증명서, 근로계약서, 급여 명세서, 업무 관련 교육 이수 기록처럼 이미 받은 자료가 있는지 먼저 확인합니다. 파일과 종이 자료를 한곳에 모아 두면 나중에 필요한 항목을 찾기 쉽습니다.", "개인정보가 포함된 서류는 공용 기기나 누구나 볼 수 있는 저장 공간에 두지 않는 편이 안전합니다."] },
+    { heading: "필요한 서류와 제출처를 구분합니다", paragraphs: ["이직 과정에서 필요한 서류는 지원하는 곳이나 상황에 따라 다를 수 있습니다. 요청받은 서류의 이름, 제출 기한, 원본 또는 사본 여부를 따로 적어 두고 현재 근무지나 발급 기관의 안내를 확인하세요."], points: ["서류 이름과 제출 기한 기록", "발급 기관·발급 방법 확인", "개인정보가 보이는 부분 점검"] },
+  ] },
+  { slug: "check-before-requesting-certificates", category: "public", title: "증명서를 발급하기 전, 먼저 확인할 기본 항목", excerpt: "필요한 증명서의 종류와 제출처, 발급 기준일을 확인하면 다시 발급하는 수고를 줄일 수 있습니다.", publishedAt: "2026. 08. 03.", reviewedAt: "2026. 08. 04.", readTime: "3분 읽기", sections: [
+    { heading: "제출처가 요구하는 서류 이름을 정확히 확인합니다", paragraphs: ["비슷한 이름의 증명서라도 포함되는 정보와 발급 기준이 다를 수 있습니다. 제출처에서 안내한 서류 이름, 발급일 제한, 주민등록번호 표시 여부처럼 필요한 조건을 먼저 메모해 두세요.", "온라인과 방문 발급 중 어떤 방법이 가능한지는 기관과 서류 종류에 따라 달라질 수 있으므로, 발급 전 공식 안내를 다시 확인하는 것이 좋습니다."] },
+    { heading: "발급 뒤에는 기한과 개인정보를 다시 살펴봅니다", paragraphs: ["서류를 받았다면 이름, 주소, 발급일처럼 기본 정보가 맞는지 확인합니다. 제출 기한이 지났거나 노출할 필요 없는 개인정보가 있다면 제출처의 안내에 따라 재발급 또는 마스킹 가능 여부를 문의하세요."], points: ["제출처가 정한 서류명 확인", "발급일·유효 기간 확인", "필요하지 않은 개인정보 노출 여부 확인"] },
   ] },
 ];
 

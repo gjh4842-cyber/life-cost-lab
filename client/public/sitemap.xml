@@ -1,19 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://example.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://example.com/articles</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://example.com/category/money</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://example.com/category/health</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://example.com/category/digital</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://example.com/category/home</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://example.com/articles/before-you-apply-benefits</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://example.com/articles/health-checkup-preparation</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://example.com/articles/save-photos-on-phone</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://example.com/articles/rental-contract-checklist</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://example.com/articles/reduce-household-fixed-costs</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://example.com/calculators</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://example.com/about</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://example.com/contact</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://example.com/privacy</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://example.com/disclaimer</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-</urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><!-- pnpm build:cloudflare 실행 시 실제 도메인과 콘텐츠 URL로 자동 생성됩니다. --></urlset>

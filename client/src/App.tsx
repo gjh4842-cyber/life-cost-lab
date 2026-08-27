@@ -16,8 +16,9 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const SearchPage = lazy(() => import("./pages/SearchPage"));
 const About = lazy(() => import("./pages/About"));
+const Terms = lazy(() => import("./pages/Terms"));
 
 function PageLoading() { return <div className="route-loading" aria-live="polite"><span>페이지를 불러오는 중입니다.</span></div>; }
-function Router() { return <Switch><Route path="/" component={Home} /><Route path="/articles" component={ArticleList} /><Route path="/articles/:slug" component={ArticlePage} /><Route path="/category/:slug" component={CategoryPage} /><Route path="/search" component={SearchPage} /><Route path="/calculators" component={Calculators} /><Route path="/about" component={About} /><Route path="/contact" component={Contact} /><Route path="/privacy" component={Privacy} /><Route path="/disclaimer" component={Disclaimer} /><Route path="/404" component={NotFound} /><Route component={NotFound} /></Switch>; }
+function Router() { return <Switch><Route path="/" component={Home} /><Route path="/articles" component={ArticleList} /><Route path="/articles/:slug" component={ArticlePage} /><Route path="/category/:slug" component={CategoryPage} /><Route path="/search" component={SearchPage} /><Route path="/calculators" component={Calculators} /><Route path="/about" component={About} /><Route path="/contact" component={Contact} /><Route path="/privacy" component={Privacy} /><Route path="/terms" component={Terms} /><Route path="/disclaimer" component={Disclaimer} /><Route path="/404" component={NotFound} /><Route component={NotFound} /></Switch>; }
 function App() { return <ErrorBoundary><Suspense fallback={<PageLoading />}><Router /></Suspense></ErrorBoundary>; }
 export default App;
