@@ -1,15 +1,15 @@
 /**
- * Design note — 여백의 생활편집실: 운영 설정도 콘텐츠와 분리해, 사이트 신뢰 정보가 한 곳에서 일관되게 관리되게 한다.
- * 배포 전 실제 운영 정보로 반드시 변경하세요.
+ * Design note — 생활비랩: 실제 도메인·운영자·문의 이메일과 외부 서비스 ID는 이 한 파일에서 관리한다.
+ * 배포 전 연락 가능한 실제 이메일을 입력하고, 분석·광고 서비스는 실제 사용을 시작할 때만 설정한다.
  */
 export const siteConfig = {
-  siteName: "한결생활 가이드",
+  siteName: "생활비랩",
+  siteDescription: "대한민국 생활비 절약 및 생활정보",
+  brandMessage: "생활에 필요한 비용을 알아보고, 비교하고, 절약하는 데 필요한 실용적인 정보를 제공합니다.",
   domain: "https://xn--v69a23sc9g7wd.kr",
   contactEmail: "",
   operatorName: "생활비랩",
-  // Google Analytics 4 측정 ID 예시: G-XXXXXXXXXX. 비워 두면 관련 스크립트를 불러오지 않습니다.
   googleAnalyticsId: "",
-  // Google AdSense 클라이언트 ID 예시: ca-pub-XXXXXXXXXXXXXXXX. 비워 두면 관련 스크립트와 ads.txt가 생성되지 않습니다.
   adsenseClient: "",
   privacyEffectiveDate: "2026. 08. 27.",
 };
