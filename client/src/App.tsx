@@ -5,7 +5,10 @@ import ArticleList from "@/pages/ArticleList";
 import ArticlePage from "@/pages/ArticlePage";
 import Calculators from "@/pages/Calculators";
 import CategoryPage from "@/pages/CategoryPage";
+import Contact from "@/pages/Contact";
+import Disclaimer from "@/pages/Disclaimer";
 import NotFound from "@/pages/NotFound";
+import Privacy from "@/pages/Privacy";
 import SearchPage from "@/pages/SearchPage";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -23,6 +26,9 @@ function Router() {
       <Route path={"/search"} component={SearchPage} />
       <Route path={"/calculators"} component={Calculators} />
       <Route path={"/about"} component={About} />
+      <Route path={"/contact"} component={Contact} />
+      <Route path={"/privacy"} component={Privacy} />
+      <Route path={"/disclaimer"} component={Disclaimer} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

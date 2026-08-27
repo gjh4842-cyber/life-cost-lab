@@ -13,4 +13,7 @@
   <url><loc>https://example.com/articles/reduce-household-fixed-costs</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://example.com/calculators</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://example.com/about</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://example.com/contact</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://example.com/privacy</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://example.com/disclaimer</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
 </urlset>
