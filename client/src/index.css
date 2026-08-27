@@ -458,3 +458,29 @@ h1, h2, h3 { margin-bottom: 1rem; }
 .calculator-card > .calculator-card__index { display: grid; width: 31px; height: 31px; margin-bottom: 1.2rem; border: 1px solid var(--terracotta); border-radius: 50%; color: var(--terracotta); font-family: var(--serif); font-size: 1.05rem; place-items: center; }
 .calculator-card > .calculator-card__more { display: inline-flex; width: auto; height: auto; margin-top: auto; margin-bottom: 0; padding-top: 1.1rem; border: 0; border-top: 1px dashed #cbc1ad; border-radius: 0; color: var(--blue); background: transparent; font-family: var(--sans); font-size: .9rem; font-weight: 700; place-items: initial; }
 .calculator-card > .calculator-card__more svg { width: 16px; height: 16px; margin: 0; }
+
+/* The Cloudflare Pages build has no local Manus image asset; keep the brand mark stable without a broken image request. */
+.brand__mark {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid #b7c9d5;
+  border-radius: 50%;
+  background: #f8f9fa;
+  color: #0c4c70;
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+@media (max-width: 620px) {
+  .brand__mark {
+    width: 38px;
+    height: 38px;
+    font-size: 0.86rem;
+  }
+}
