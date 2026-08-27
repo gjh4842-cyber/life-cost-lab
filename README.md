@@ -34,4 +34,4 @@
 
 빌드 명령 `pnpm build:cloudflare`는 게시글·카테고리 데이터에 맞춰 XML Sitemap과 각 콘텐츠 경로의 정적 HTML을 생성합니다. 따라서 주요 본문, 제목, 메타 설명, canonical URL, Open Graph, Breadcrumb 및 글 구조화 데이터가 검색엔진에 바로 제공됩니다. Cloudflare Pages에서는 `_redirects` 대신 생성된 정적 경로를 사용하므로, 존재하지 않는 주소는 `404.html`을 반환합니다.
 
-Google Search Console 등록 전에는 `siteConfig.ts`의 `domain`을 실제 HTTPS 도메인으로 입력한 뒤 재빌드하고, 사이트맵을 제출하세요. Google Analytics와 Google AdSense를 사용하기로 한 경우에만 같은 파일의 `googleAnalyticsId`, `adsenseClient`에 발급받은 실제 ID를 입력합니다. 값이 비어 있으면 외부 계측·광고 스크립트는 불러오지 않습니다. 빌드 과정은 `robots.txt`, `sitemap.xml`, `ads.txt`도 실제 설정에 맞춰 자동 생성합니다. 자세한 글 추가 절차는 `CONTENT_PUBLISHING.md`에 정리했습니다.
+Google Search Console 등록 전에는 `siteConfig.ts`의 `domain`을 실제 HTTPS 도메인으로 입력한 뒤 재빌드하고, 사이트맵을 제출하세요. 실제 도메인이 비어 있는 상태에서는 잘못된 URL을 만들지 않도록 정적 canonical·구조화 데이터와 Sitemap URL 목록을 생성하지 않습니다. Google Analytics와 Google AdSense를 사용하기로 한 경우에만 같은 파일의 `googleAnalyticsId`, `adsenseClient`에 발급받은 실제 ID를 입력합니다. 값이 비어 있으면 외부 계측·광고 스크립트는 불러오지 않습니다. 빌드 과정은 `robots.txt`, `sitemap.xml`, `ads.txt`도 실제 설정에 맞춰 자동 생성합니다. 자세한 글 추가 절차는 `CONTENT_PUBLISHING.md`에 정리했습니다.
