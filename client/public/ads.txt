@@ -1,0 +1,2 @@
+# 배포 전 Google AdSense에서 발급한 게시자 ID로 아래 형식을 교체하세요.
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

@@ -1,25 +1,9 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
-
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
- */
-export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
-
-  return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
-      </main>
-    </div>
-  );
-}
+/** Design note — 여백의 생활편집실: 비대칭 편집 지면으로 오늘의 길잡이와 최신 정보의 우선순위를 나눈다. */
+import { ArrowRight, Check, HeartPulse, House, Search, Smartphone, WalletCards } from "lucide-react";
+import { Link, useLocation } from "wouter";
+import { ArticleCard } from "@/components/ArticleCard";
+import { PageShell } from "@/components/PageShell";
+import { articles, categories } from "@/data/content";
+const categoryIcons = { wallet: WalletCards, heart: HeartPulse, smartphone: Smartphone, house: House };
+export default function Home() { const [, setLocation] = useLocation(); const featured = articles.filter((article) => article.featured).slice(0, 3); const newest = articles.slice(0, 4); const leadArticle = featured[0]; const submitSearch = (event: React.FormEvent<HTMLFormElement>) => { event.preventDefault(); const keyword = new FormData(event.currentTarget).get("home-search")?.toString().trim(); if (keyword) setLocation(`/search?q=${encodeURIComponent(keyword)}`); };
+  return <PageShell title="생활을 정리하는 한결 쉬운 길잡이" description="생활에 바로 필요한 돈·혜택, 건강·돌봄, 일상·디지털, 주거·안전 정보를 읽기 쉬운 순서로 안내합니다." path="/"><section className="hero-section"><div className="hero-section__inner"><div className="hero-copy"><p className="eyebrow">생활 정보를 쉽게</p><h1>생활의 복잡한 순간,<br /><span>한결 쉬운 순서</span>로.</h1><p className="hero-copy__summary">알아야 할 기준은 많고 시간은 부족할 때, 필요한 생활 정보를 정확하고 읽기 쉬운 문장으로 정리합니다.</p><form className="hero-search" onSubmit={submitSearch}><Search size={21} /><input name="home-search" aria-label="정보 검색" placeholder="궁금한 내용을 입력해 보세요" /><button type="submit">찾기</button></form><p className="hero-copy__hint">예: 지원 제도 · 건강검진 · 휴대폰 사진 · 주거 계약</p><div className="today-guide"><div className="today-guide__head"><span className="index-orb">오늘</span><p>오늘의 길잡이</p></div><Link href={`/articles/${leadArticle.slug}`}><strong>{leadArticle.title}</strong><ArrowRight size={18} /></Link><ul><li><Check size={14} /> 대상과 기준일</li><li><Check size={14} /> 서류 준비 순서</li><li><Check size={14} /> 결과 확인 방법</li></ul></div></div><div className="hero-visual"><img src="/manus-storage/trusted-life-guide-hero_76630c45.png" alt="책과 나침반이 놓인 밝은 생활 정보 안내 책상" /><div className="hero-visual__caption"><span>오늘의 생활 안내</span><strong>차분하게 읽고, 바로 확인하기</strong></div></div></div></section><section className="category-section content-wrap"><div className="section-intro section-intro--split"><div><p className="eyebrow">주제별로 찾아보기</p><h2>지금 필요한 분야부터<br />살펴보세요.</h2></div><p>처음이라도 길을 잃지 않도록, 생활의 큰 주제를 네 갈래로 나누었습니다. 각 글에는 게시일과 최종 검토일을 함께 표시합니다.</p></div><div className="category-rail">{categories.map((category, index) => { const Icon = categoryIcons[category.icon]; return <Link className="category-card" data-accent={category.accent} href={`/category/${category.slug}`} key={category.slug}><span className="category-card__number">0{index + 1}</span><Icon size={28} strokeWidth={1.7} /><h3>{category.name}</h3><p>{category.description}</p><span className="category-card__more">글 보기 <ArrowRight size={17} /></span></Link>; })}</div></section><section className="featured-section"><div className="content-wrap"><div className="section-intro section-intro--compact"><div><p className="eyebrow">먼저 읽어볼 글</p><h2>오늘의 길잡이</h2></div><Link className="text-link" href="/articles">모든 최신 글 보기 <ArrowRight size={17} /></Link></div><div className="featured-grid">{featured.map((article, index) => <ArticleCard article={article} priority={index === 0} key={article.slug} />)}</div></div></section><section className="latest-section content-wrap"><div className="latest-section__heading"><p className="eyebrow">최근 검토한 글</p><h2>새로 정리한 정보</h2><p>기준이 바뀔 수 있는 정보는 업데이트 날짜를 함께 확인하세요.</p></div><div className="latest-list">{newest.map((article, index) => <div className="latest-item" key={article.slug}><span className="latest-item__index">{String(index + 1).padStart(2, "0")}</span><span>{article.publishedAt}</span><Link href={`/category/${article.category}`}>{categories.find((category) => category.slug === article.category)?.shortName}</Link><Link className="latest-item__title" href={`/articles/${article.slug}`}>{article.title}</Link><ArrowRight size={18} /></div>)}</div></section><section className="trust-section"><div className="content-wrap trust-section__inner"><div><p className="eyebrow">한결생활의 약속</p><h2>광고보다 먼저,<br />정보의 기준을 분명하게.</h2></div><div className="trust-list"><div><span>01</span><p><strong>읽기 쉬운 문장</strong>전문 용어는 풀어서 쓰고, 중요한 내용은 확인 순서로 나눕니다.</p></div><div><span>02</span><p><strong>날짜를 남기는 정보</strong>게시일과 최종 검토일을 밝혀 정보의 시점을 알 수 있게 합니다.</p></div><div><span>03</span><p><strong>출처를 우선하는 태도</strong>제도와 수치는 공식 기관의 최신 안내를 다시 확인하도록 안내합니다.</p></div></div></div></section></PageShell>; }
