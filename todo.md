@@ -37,3 +37,15 @@
 - [x] 메뉴·버튼·검색·내부 링크·정적 URL 동작 전수 점검
 - [x] PC·모바일 전체 사이트 레이아웃 재확인 및 수정
 - [x] Cloudflare Pages·DNS 연결 안내의 실제 프로젝트 설정 일치 여부 확인
+
+## Cloudflare Pages Direct Upload 준비
+
+- [ ] Cloudflare 계정 연결 가능 여부와 Direct Upload 제약 확인
+- [ ] 정적 배포 결과물 생성·압축 및 업로드용 파일 검증
+- [ ] Cloudflare 대시보드의 Direct Upload 단계 안내
+- [ ] 개인 도메인 연결과 배포 후 URL·HTTPS 점검 안내
+
+## GitHub 비공개 저장소 내보내기
+
+- [ ] gjh4842-cyber/life-cost-lab 비공개 저장소에 코드 업로드
+- [ ] Cloudflare Direct Upload용 정적 결과물 압축 및 검증
