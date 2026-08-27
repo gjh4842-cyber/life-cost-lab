@@ -1,4 +1,171 @@
-/** Design note — 생활비랩: 첫 화면은 ‘비용 찾기 → 분야 선택 → 검토된 글 읽기’ 흐름을 큰 글씨와 여백으로 보여 준다. */
-import { ArrowRight, Calculator, CarFront, Check, Landmark, Map, Search, WalletCards, House } from "lucide-react"; import type { LucideIcon } from "lucide-react"; import { Link, useLocation } from "wouter"; import { ArticleCard } from "@/components/ArticleCard"; import { PageShell } from "@/components/PageShell"; import { articles, categories, type CategoryIcon } from "@/data/content"; import { siteConfig } from "@/data/siteConfig";
-const categoryIcons: Record<CategoryIcon, LucideIcon> = { wallet: WalletCards, landmark: Landmark, car: CarFront, house: House, map: Map, calculator: Calculator };
-export default function Home() { const [, setLocation] = useLocation(); const featured = articles.filter((article) => article.featured).slice(0, 3); const newest = articles.slice(0, 5); const leadArticle = featured[0] ?? articles[0]; const submitSearch = (event: React.FormEvent<HTMLFormElement>) => { event.preventDefault(); const keyword = new FormData(event.currentTarget).get("home-search")?.toString().trim(); if (keyword) setLocation(`/search?q=${encodeURIComponent(keyword)}`); }; return <PageShell title="생활비 절약 및 생활정보" description={siteConfig.brandMessage} path="/"><section className="hero-section"><div className="hero-section__inner"><div className="hero-copy"><p className="eyebrow">대한민국 생활비 절약 및 생활정보</p><h1>생활에 필요한 비용,<br /><span>더 쉽게 알아보고 아끼세요.</span></h1><p className="hero-copy__summary">{siteConfig.brandMessage}</p><form className="hero-search" onSubmit={submitSearch}><Search size={21} /><input name="home-search" aria-label="생활정보 검색" placeholder="예: 에어컨 물이 새요, 기초연금 대상" /><button type="submit">찾기</button></form><p className="hero-copy__hint">예: 한 달 생활비 · 자동차 엔진오일 교체 · 기초연금 대상 · 여행 예상비용</p><div className="today-guide"><div className="today-guide__head"><span className="index-orb">오늘</span><p>오늘의 생활비 안내</p></div><Link href={`/articles/${leadArticle.slug}`}><strong>{leadArticle.title}</strong><ArrowRight size={18} /></Link><ul><li><Check size={14} /> 비용 항목 나누기</li><li><Check size={14} /> 비교 기준 확인</li><li><Check size={14} /> 검토일 확인</li></ul></div></div><div className="hero-visual"><img src="/manus-storage/trusted-life-guide-hero_7a95c094.png" alt="생활비 기록장과 계산기, 안내 책자가 놓인 밝은 책상" /><div className="hero-visual__caption"><span>생활비랩의 원칙</span><strong>비용은 숫자로, 선택은 쉽게</strong></div></div></div></section><section className="category-section content-wrap"><div className="section-intro section-intro--split"><div><p className="eyebrow">여섯 가지 생활 분야</p><h2>지금 필요한 비용부터<br />찾아보세요.</h2></div><p>생활비·복지·자동차·주거·여행·계산기를 한곳에서 찾을 수 있습니다. 모든 글에는 게시일과 최종 검토일을 함께 표시합니다.</p></div><div className="category-rail">{categories.map((category, index) => { const Icon = categoryIcons[category.icon]; const href = category.calculatorHub ? "/calculators" : `/category/${category.slug}`; return <Link className="category-card" data-accent={category.accent} href={href} key={category.slug}><span className="category-card__number">{String(index + 1).padStart(2, "0")}</span><Icon size={30} strokeWidth={1.7} /><h3>{category.name}</h3><p>{category.description}</p><span className="category-card__more">{category.calculatorHub ? "계산기 보기" : "글 보기"} <ArrowRight size={17} /></span></Link>; })}</div></section><section className="featured-section popular-section"><div className="content-wrap"><div className="section-intro section-intro--compact"><div><p className="eyebrow">많이 찾는 생활 주제</p><h2>지출을 살피기 전,<br />기준부터 확인하세요.</h2></div><p className="section-note">방문 통계를 임의로 표시하지 않습니다. 이 영역은 생활비랩이 먼저 읽기를 권하는 핵심 주제를 편집 기준으로 안내합니다.</p></div><div className="featured-grid">{featured.map((article, index) => <ArticleCard article={article} priority={index === 0} key={article.slug} />)}</div></div></section><section className="latest-section content-wrap"><div className="latest-section__heading"><p className="eyebrow">최신 콘텐츠</p><h2>새로 정리한<br />생활정보</h2><p>기준이 바뀔 수 있는 정보는 최종 검토일을 함께 확인하세요.</p></div><div className="latest-list">{newest.map((article, index) => <div className="latest-item" key={article.slug}><span className="latest-item__index">{String(index + 1).padStart(2, "0")}</span><span>{article.publishedAt}</span><Link href={`/category/${article.category}`}>{categories.find((category) => category.slug === article.category)?.shortName}</Link><Link className="latest-item__title" href={`/articles/${article.slug}`}>{article.title}</Link><ArrowRight size={18} /></div>)}<Link className="latest-list__all" href="/articles">전체 생활정보 보기 <ArrowRight size={17} /></Link></div></section><section className="trust-section"><div className="content-wrap trust-section__inner"><div><p className="eyebrow">생활비랩의 기준</p><h2>광고보다 먼저,<br />정보의 기준을 분명하게.</h2></div><div className="trust-list"><div><span>01</span><p><strong>읽기 쉬운 문장</strong>비용과 절차를 쉬운 말로 풀고, 중요한 내용은 확인 순서로 나눕니다.</p></div><div><span>02</span><p><strong>날짜를 남기는 정보</strong>게시일과 최종 검토일을 밝혀 정보가 언제 기준인지 알 수 있게 합니다.</p></div><div><span>03</span><p><strong>출처를 확인하는 태도</strong>제도와 수치는 공식 기관의 최신 안내를 다시 확인하도록 안내합니다.</p></div></div></div></section></PageShell>; }
+/** Design note — 생활비랩: 첫 화면은 ‘검색 → 분야 선택 → 검토된 글 읽기’ 흐름을 큰 글씨와 여백으로 보여 준다. */
+import { ArrowRight, Calculator, CarFront, Landmark, Map, WalletCards, House } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { Link } from "wouter";
+import { ArticleCard } from "@/components/ArticleCard";
+import { PageShell } from "@/components/PageShell";
+import { articles, categories, type CategoryIcon } from "@/data/content";
+import { calculators } from "@/data/calculators";
+import { siteConfig } from "@/data/siteConfig";
+
+const categoryIcons: Record<CategoryIcon, LucideIcon> = {
+  wallet: WalletCards,
+  landmark: Landmark,
+  car: CarFront,
+  house: House,
+  map: Map,
+  calculator: Calculator,
+};
+
+export default function Home() {
+  const featured = articles.filter((article) => article.featured).slice(0, 3);
+  const newest = articles.slice(0, 4);
+  const calculatorHighlights = calculators.slice(0, 3);
+
+  return (
+    <PageShell title="생활비 절약 및 생활정보" description={siteConfig.brandMessage} path="/">
+      <section className="category-section content-wrap">
+        <div className="section-intro section-intro--split">
+          <div>
+            <p className="eyebrow">여섯 가지 생활 분야</p>
+            <h2>
+              지금 필요한 비용부터
+              <br />
+              찾아보세요.
+            </h2>
+          </div>
+          <p>{siteConfig.brandMessage} 생활비·복지·자동차·주거·여행·계산기를 한곳에서 찾을 수 있으며, 모든 글에는 게시일과 최종 검토일을 함께 표시합니다.</p>
+        </div>
+        <div className="category-rail">
+          {categories.map((category, index) => {
+            const Icon = categoryIcons[category.icon];
+            const href = category.calculatorHub ? "/calculators" : `/category/${category.slug}`;
+            return (
+              <Link className="category-card h-full" data-accent={category.accent} href={href} key={category.slug}>
+                <span className="category-card__number">{String(index + 1).padStart(2, "0")}</span>
+                <Icon size={30} strokeWidth={1.7} />
+                <h3 className="line-clamp-2">{category.name}</h3>
+                <p className="line-clamp-3">{category.description}</p>
+                <span className="category-card__more">
+                  {category.calculatorHub ? "계산기 보기" : "글 보기"} <ArrowRight size={17} />
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="featured-section recommendation-section">
+        <div className="content-wrap">
+          <div className="section-intro section-intro--compact">
+            <div>
+              <p className="eyebrow">추천 생활정보</p>
+              <h2>
+                먼저 읽으면 좋은
+                <br />
+                생활비 기준을 확인하세요.
+              </h2>
+            </div>
+            <p className="section-note">생활비랩이 먼저 읽기를 권하는 핵심 주제를 편집 기준으로 안내합니다.</p>
+          </div>
+          <div className="featured-grid">
+            {featured.map((article, index) => (
+              <ArticleCard article={article} priority={index === 0} key={article.slug} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="latest-section content-wrap">
+        <div className="latest-section__heading">
+          <p className="eyebrow">최신 콘텐츠</p>
+          <h2>
+            새로 정리한
+            <br />
+            생활정보
+          </h2>
+          <p>기준이 바뀔 수 있는 정보는 최종 검토일을 함께 확인하세요.</p>
+        </div>
+        <div className="latest-list">
+          {newest.map((article, index) => (
+            <div className="latest-item" key={article.slug}>
+              <span className="latest-item__index">{String(index + 1).padStart(2, "0")}</span>
+              <span>{article.publishedAt}</span>
+              <Link href={`/category/${article.category}`}>{categories.find((category) => category.slug === article.category)?.shortName}</Link>
+              <Link className="latest-item__title" href={`/articles/${article.slug}`}>
+                {article.title}
+              </Link>
+              <ArrowRight size={18} />
+            </div>
+          ))}
+          <Link className="latest-list__all" href="/articles">
+            전체 생활정보 보기 <ArrowRight size={17} />
+          </Link>
+        </div>
+      </section>
+
+      <section className="calculator-section content-wrap">
+        <div className="section-intro section-intro--split">
+          <div>
+            <p className="eyebrow">생활 계산기</p>
+            <h2>
+              생활 속 숫자,
+              <br />
+              먼저 정리해 보세요.
+            </h2>
+          </div>
+          <p>수입과 지출, 차량 유지비, 여행비처럼 직접 입력한 숫자를 기준으로 필요한 금액을 간단히 비교합니다.</p>
+        </div>
+        <div className="calculator-grid">
+          {calculatorHighlights.map((calculator, index) => (
+            <Link className="calculator-card h-full" href={`/calculators/${calculator.slug}`} key={calculator.slug}>
+              <span className="calculator-card__index">{String(index + 1).padStart(2, "0")}</span>
+              <Calculator size={24} strokeWidth={1.8} />
+              <h3 className="line-clamp-2">{calculator.name}</h3>
+              <p className="line-clamp-3">{calculator.description}</p>
+              <span className="calculator-card__more">
+                계산해 보기 <ArrowRight size={16} />
+              </span>
+            </Link>
+          ))}
+        </div>
+        <Link className="latest-list__all calculator-section__all" href="/calculators">
+          생활 계산기 전체 보기 <ArrowRight size={17} />
+        </Link>
+      </section>
+
+      <section className="trust-section">
+        <div className="content-wrap trust-section__inner">
+          <div>
+            <p className="eyebrow">생활비랩의 기준</p>
+            <h2>
+              광고보다 먼저,
+              <br />
+              정보의 기준을 분명하게.
+            </h2>
+          </div>
+          <div className="trust-list">
+            <div>
+              <span>01</span>
+              <p>
+                <strong>읽기 쉬운 문장</strong>비용과 절차를 쉬운 말로 풀고, 중요한 내용은 확인 순서로 나눕니다.
+              </p>
+            </div>
+            <div>
+              <span>02</span>
+              <p>
+                <strong>날짜를 남기는 정보</strong>게시일과 최종 검토일을 밝혀 정보가 언제 기준인지 알 수 있게 합니다.
+              </p>
+            </div>
+            <div>
+              <span>03</span>
+              <p>
+                <strong>출처를 확인하는 태도</strong>제도와 수치는 공식 기관의 최신 안내를 다시 확인하도록 안내합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </PageShell>
+  );
+}
