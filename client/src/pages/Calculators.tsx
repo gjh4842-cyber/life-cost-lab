@@ -1,3 +1,65 @@
-/** Design note — 생활비랩: 계산기 목록은 도구의 목적과 입력 항목을 먼저 보여 주고, 각 도구는 독립 주소에서 열리게 한다. */
-import { ArrowRight, Calculator } from "lucide-react"; import { Link } from "wouter"; import { PageShell } from "@/components/PageShell"; import { calculators } from "@/data/calculators";
-export default function Calculators() { return <PageShell title="생활 계산기" description="월 생활비, 자동차 유지비, 여행비, 고정지출, 절약금액을 입력값 기준으로 계산하는 생활비랩 도구입니다." path="/calculators"><section className="calculator-hero"><div className="content-wrap"><p className="eyebrow">생활비랩 계산기</p><h1>생활 속 숫자,<br /><span>입력값으로 쉽게 정리하세요.</span></h1><p>복잡한 판단 전, 내가 확인한 금액을 직접 넣어 생활비와 비용의 흐름을 살펴볼 수 있습니다.</p></div></section><section className="calculator-directory content-wrap"><div className="calculator-directory__intro"><span className="index-orb">01</span><div><p className="eyebrow">이용 가능한 계산기</p><h2>필요한 계산부터<br />골라 보세요.</h2></div><p>각 계산기는 별도 주소로 제공됩니다. 결과는 입력값을 정리하는 참고용이며, 중요한 계약·금융 판단은 공식 안내를 함께 확인하세요.</p></div><div className="calculator-grid">{calculators.map((calculator, index) => <Link key={calculator.slug} className="calculator-card h-full" href={`/calculators/${calculator.slug}`}><span>{String(index + 1).padStart(2, "0")}</span><Calculator size={27} /> <h3 className="line-clamp-2">{calculator.name}</h3> <p className="line-clamp-3">{calculator.description}</p><small>입력 항목 {calculator.fields.length}개</small><b>계산기 열기 <ArrowRight size={17} /></b></Link>)}</div></section></PageShell>; }
+/** Design note — 생활비랩 계산기 목록은 도구의 목적과 입력 항목을 먼저 보여 주고, 각 도구는 독립 주소에서 열리며 설명 글로 자연스럽게 이어진다. */
+import { ArrowRight, Calculator } from "lucide-react";
+import { Link } from "wouter";
+import { ArticleCard } from "@/components/ArticleCard";
+import { PageShell } from "@/components/PageShell";
+import { calculators } from "@/data/calculators";
+import { getArticlesByCategory } from "@/data/content";
+
+export default function Calculators() {
+  const guideArticles = getArticlesByCategory("life-calculators");
+
+  return (
+    <PageShell
+      title="생활 계산기"
+      description="월 생활비, 자동차 유지비, 여행비, 고정지출, 절약금액을 입력값 기준으로 계산하는 생활비랩 도구입니다."
+      path="/calculators"
+    >
+      <section className="calculator-hero">
+        <div className="content-wrap">
+          <p className="eyebrow">생활비랩 계산기</p>
+          <h1>생활 속 숫자,<br /><span>입력값으로 쉽게 정리하세요.</span></h1>
+          <p>복잡한 판단 전, 내가 확인한 금액을 직접 넣어 생활비와 비용의 흐름을 살펴볼 수 있습니다.</p>
+        </div>
+      </section>
+      <section className="calculator-directory content-wrap">
+        <div className="calculator-directory__intro">
+          <span className="index-orb">01</span>
+          <div>
+            <p className="eyebrow">이용 가능한 계산기</p>
+            <h2>필요한 계산부터<br />골라 보세요.</h2>
+          </div>
+          <p>각 계산기는 별도 주소로 제공됩니다. 결과는 입력값을 정리하는 참고용이며, 중요한 계약·금융 판단은 공식 안내를 함께 확인하세요.</p>
+        </div>
+        <div className="calculator-grid">
+          {calculators.map((calculator, index) => (
+            <Link key={calculator.slug} className="calculator-card h-full" href={`/calculators/${calculator.slug}`}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <Calculator size={27} />
+              <h3 className="line-clamp-2">{calculator.name}</h3>
+              <p className="line-clamp-3">{calculator.description}</p>
+              <small>입력 항목 {calculator.fields.length}개</small>
+              <b>계산기 열기 <ArrowRight size={17} /></b>
+            </Link>
+          ))}
+        </div>
+      </section>
+      {guideArticles.length > 0 && (
+        <section className="related-section calculator-related-section">
+          <div className="content-wrap">
+            <div className="section-intro section-intro--compact">
+              <div>
+                <p className="eyebrow">계산기 활용 정보</p>
+                <h2>숫자를 입력하기 전에<br />기준을 정리해 보세요.</h2>
+              </div>
+              <Link className="text-link" href="/articles">생활정보 전체 보기 <ArrowRight size={17} /></Link>
+            </div>
+            <div className="related-grid">
+              {guideArticles.slice(0, 3).map((article) => <ArticleCard article={article} key={article.slug} />)}
+            </div>
+          </div>
+        </section>
+      )}
+    </PageShell>
+  );
+}
