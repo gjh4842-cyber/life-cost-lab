@@ -37,6 +37,23 @@ describe("생활비랩 콘텐츠 탐색 구조", () => {
     }
   });
 
+  it("모든 기사는 공통 품질 필드를 가진다", () => {
+    expect(articles.length).toBeGreaterThanOrEqual(32);
+    for (const article of articles) {
+      expect(article.title).toBeTruthy();
+      expect(article.excerpt).toBeTruthy();
+      expect(article.sections.length).toBeGreaterThan(0);
+      expect(article.audience).toBeTruthy();
+      expect(article.verification).toBeTruthy();
+      expect(article.example).toBeTruthy();
+      expect(article.cautions.length).toBeGreaterThan(0);
+      expect(article.faqs.length).toBeGreaterThan(0);
+      expect(article.sources.length).toBeGreaterThan(0);
+      expect(article.publishedAt).toBeTruthy();
+      expect(article.reviewedAt).toBeTruthy();
+    }
+  });
+
   it("정부지원·복지 글은 공식기관 상세 출처를 가진다", () => {
     const officialHosts = ["mohw.go.kr", "gov.kr", "bokjiro.go.kr", "nps.or.kr", "work24.go.kr", "myhome.go.kr"];
     const welfareArticles = articles.filter((article) => article.category === "welfare");
