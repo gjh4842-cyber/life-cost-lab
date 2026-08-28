@@ -1,2 +1,2 @@
-# 배포 전 Google AdSense에서 발급한 게시자 ID로 아래 형식을 교체하세요.
-# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+# Google AdSense 승인 후 발급받은 실제 게시자 ID로 이 파일을 업데이트하세요.
+# 현재는 광고 계정이 연결되어 있지 않아 게시자 레코드를 넣지 않습니다.
