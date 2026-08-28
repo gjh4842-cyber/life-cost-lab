@@ -28,11 +28,11 @@ export default function Home() {
         <div className="section-intro section-intro--split">
           <div>
             <p className="eyebrow">여섯 가지 생활 분야</p>
-            <h2>
-              지금 필요한 비용부터
+            <h1>
+              생활비와 생활정보를
               <br />
-              찾아보세요.
-            </h2>
+              <span>한곳에서 찾아보세요.</span>
+            </h1>
           </div>
           <p>{siteConfig.brandMessage} 생활비·복지·자동차·주거·여행·계산기를 한곳에서 찾을 수 있으며, 모든 글에는 게시일과 최종 검토일을 함께 표시합니다.</p>
         </div>
