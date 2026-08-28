@@ -484,3 +484,23 @@ h1, h2, h3 { margin-bottom: 1rem; }
     font-size: 0.86rem;
   }
 }
+
+
+/* Archive pagination: keep page numbers and navigation actions readable at every width. */
+.archive-pagination { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .5rem; margin-top: 2.5rem; }
+.archive-pagination a { display: inline-flex; min-width: 42px; min-height: 42px; align-items: center; justify-content: center; gap: .35rem; padding: .55rem .8rem; border: 1px solid var(--line); background: #fff; color: var(--blue); font-size: .95rem; font-weight: 700; line-height: 1; transition: background .18s var(--ease), border-color .18s var(--ease), color .18s var(--ease); }
+.archive-pagination a:hover, .archive-pagination a:focus-visible { border-color: var(--blue); background: #edf2f5; color: var(--ink-deep); }
+.archive-pagination a.active { border-color: var(--blue); background: var(--blue); color: #fff; }
+@media (max-width: 620px) {
+  .archive-pagination { gap: .4rem; margin-top: 2rem; }
+  .archive-pagination a { min-width: 40px; min-height: 40px; padding: .5rem .65rem; font-size: .9rem; }
+}
+
+.article-tool-link { padding: 1.6rem; margin-bottom: 3.6rem; border: 1px solid #c7d4cb; background: #edf3ef; }
+.article-tool-link h2 { margin-bottom: .7rem; }
+.article-tool-link > p:not(.section-index) { margin-bottom: 1.2rem; color: #53655c; }
+.article-tool-link__list { display: grid; gap: .65rem; }
+.article-tool-link__item { display: flex; align-items: center; gap: .55rem; padding: .8rem .95rem; border: 1px solid #b8c9bf; color: var(--ink); background: #fffdf8; font-size: .92rem; font-weight: 700; transition: border-color .2s var(--ease), background .2s var(--ease), color .2s var(--ease); }
+.article-tool-link__item:hover { border-color: var(--ink); color: #fff; background: var(--ink); }
+.article-tool-link__arrow { margin-left: auto; transform: rotate(180deg); }
+@media (max-width: 620px) { .article-tool-link { padding: 1.2rem; } .article-tool-link__item { align-items: flex-start; font-size: .88rem; line-height: 1.5; } }
