@@ -1,0 +1,42 @@
+{
+  "build_command": "pnpm run build",
+  "capabilities": [
+    "db",
+    "server",
+    "user"
+  ],
+  "dev_command": "pnpm run dev",
+  "env_vars": {
+    "DATABASE_URL": "mysql://3hmNfyYKeo7Jh3H.root:QaToZQadk1Fq00j7J52P@gateway03.us-east-1.prod.aws.tidbcloud.com:4000/dBPAMvuP7mh8FDGP6JEFZg?ssl={\"rejectUnauthorized\":true}",
+    "DRIZZLE_DATABASE_URL": "mysql://3hmNfyYKeo7Jh3H.root:QaToZQadk1Fq00j7J52P@gateway03.us-east-1.prod.aws.tidbcloud.com:4000/dBPAMvuP7mh8FDGP6JEFZg?ssl={\"rejectUnauthorized\":true}",
+    "MANUS_WEBDEV_PROJECT_ID": "dBPAMvuP7mh8FDGP6JEFZg"
+  },
+  "experiments": null,
+  "git_remote": {
+    "repo_url": "https://7f0548f6b28a1758d9bf7be630d36cb4.artifacts.cloudflare.net/git/prod/dBPAMvuP7mh8FDGP6JEFZg.git",
+    "expiration": "2026-08-28T08:25:53.335Z",
+    "token": "art_v2_x_c403e753c3c4f050895bcbee3a3a20214a3fd580?expires=1787905553",
+    "backend": "GIT_BACKEND_ARTIFACTS"
+  },
+  "name": "trusted-life-guide",
+  "path": "/home/ubuntu/trusted-life-guide",
+  "port": 3000,
+  "secrets": {
+    "BUILT_IN_FORGE_API_KEY": "aBtAh2seG3LcYfZecWb97B",
+    "BUILT_IN_FORGE_API_URL": "https://forge.manus.ai",
+    "JWT_SECRET": "THmoqh5GhsbSakjFQpSXWw",
+    "OAUTH_SERVER_URL": "https://api.manus.im",
+    "OWNER_NAME": "곽재호",
+    "OWNER_OPEN_ID": "cvvCCtbc45EEEwhUWGztc4",
+    "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
+    "VITE_ANALYTICS_WEBSITE_ID": "b6b071a9-a3c2-427c-85ab-99165c3a826a",
+    "VITE_APP_ID": "dBPAMvuP7mh8FDGP6JEFZg",
+    "VITE_APP_LOGO": "https://files.manuscdn.com/user_upload_by_module/web_dev_logo/310519663920587464/PRZZkmDrOOLpbsLt.png",
+    "VITE_APP_TITLE": "생활정보 가이드",
+    "VITE_FRONTEND_FORGE_API_KEY": "ZXmHA3JJxHtCebWqHGh8ni",
+    "VITE_FRONTEND_FORGE_API_URL": "https://forge.manus.ai",
+    "VITE_OAUTH_PORTAL_URL": "https://manus.im"
+  },
+  "template_id": "web-static",
+  "test_command": "pnpm test"
+}
