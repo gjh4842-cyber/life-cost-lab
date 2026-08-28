@@ -71,7 +71,26 @@ const expansionArticles: Article[] = [
   makeExpandedArticle({ slug: "travel-preparation-check", category: "travel-leisure", title: "중장년 국내여행 준비물｜복약·이동·예약·비상연락 체크리스트", excerpt: "중장년 여행자가 출발 전에 복약·이동·예약·연락 정보를 확인하고 무리 없는 일정으로 준비하는 방법을 정리합니다.", publishedAt: "2026. 08. 28.", reviewedAt: "2026. 08. 28.", readTime: "5분 읽기", tags: ["여행 준비물", "중장년 여행", "여행 체크리스트"], searchTerms: ["중장년 국내여행 준비", "여행 준비물 체크리스트", "여행 복약 준비", "여행 비상연락"], relatedSlugs: ["domestic-trip-route-plan", "day-trip-budget-plan"], sources: [{ name: "대한민국 구석구석", url: "https://korean.visitkorea.or.kr/", checkedAt: "2026. 08. 28." }, { name: "질병관리청", url: "https://www.kdca.go.kr/", checkedAt: "2026. 08. 28." }], audience: "장거리 이동이나 복약, 보행·휴식이 필요한 동행자와 함께 국내여행을 준비하는 사람에게 유용합니다.", body: [{ heading: "건강과 이동 정보를 먼저 준비합니다", paragraphs: ["복용 중인 약과 복용 시간, 알레르기·주의사항, 보호자 연락처를 필요한 범위에서 정리합니다. 장시간 이동이라면 화장실·휴식 장소와 이동 보조 수단을 일정에 반영하세요.", "여행자 모두가 비상연락 방법과 숙소 주소를 알 수 있게 하고, 개인정보가 포함된 자료는 공개된 곳에 공유하지 않습니다."] }, { heading: "예약과 현장 접근성을 확인합니다", paragraphs: ["교통·숙소·관광지의 예약번호와 운영시간, 주차·엘리베이터·무장애 동선을 출발 전에 확인합니다. 이동이 어려운 경우 일정 사이에 회복 시간을 넣고 당일 변경 가능한 계획을 준비하세요."], points: ["복약·연락 정보 정리", "예약번호와 숙소 주소 저장", "휴식·화장실·이동 동선 확인"] }], verify: "교통기관·숙소·관광지의 공식 안내와 질병관리청의 건강 정보를 확인하고, 개인의 건강 문제는 의료진의 안내를 우선합니다.", example: "예약번호·주소·연락처·복약 시간을 종이에 적어 동행자와 나누되 주민등록번호 등 불필요한 민감정보는 적지 마세요.", cautions: ["건강 상태에 대한 진단이나 여행 가능 여부를 일반 정보만으로 판단하지 마세요.", "날씨·교통·시설 운영은 출발 전에 다시 확인하세요."], faqs: [{ question: "여행 중 약을 어떻게 준비하나요?", answer: "개인의 처방·복약 지시를 우선하고 여행 기간과 이동 시간을 고려해 의료진·약사에게 확인하세요." }, { question: "일정은 많이 넣을수록 좋은가요?", answer: "동행자의 체력과 이동 편의를 고려해 핵심 일정과 휴식 시간을 균형 있게 배치하는 것이 좋습니다." }] }),
 ];
 
-export const articles: Article[] = [...seedArticles, ...expansionArticles];
+const fallbackSources: Record<string, ContentSource> = {
+  "living-cost": { name: "통계청 국가통계포털", url: "https://kostat.go.kr/", checkedAt: "2026. 08. 28." },
+  welfare: { name: "정부24 보조금24", url: "https://www.gov.kr/portal/rcvfvrSvc/main", checkedAt: "2026. 08. 28." },
+  car: { name: "자동차365", url: "https://www.car365.go.kr/", checkedAt: "2026. 08. 28." },
+  "housing-appliance": { name: "마이홈포털", url: "https://www.myhome.go.kr/hws/portal/main/getMgtMainPage.do", checkedAt: "2026. 08. 28." },
+  "travel-leisure": { name: "대한민국 구석구석", url: "https://korean.visitkorea.or.kr/", checkedAt: "2026. 08. 28." },
+  "life-calculators": { name: "생활비랩 생활 계산기", url: "/calculators", checkedAt: "2026. 08. 28." },
+};
+
+const completeArticle = (article: Article): Article => ({
+  ...article,
+  audience: article.audience ?? `${categories.find((category) => category.slug === article.category)?.name ?? "생활정보"} 관련 비용과 절차를 처음 정리하는 사람에게 필요한 안내입니다.`,
+  verification: article.verification ?? "최근 거래내역과 계약서·고지서·제품 설명서 등 본인에게 해당하는 자료를 같은 기간으로 맞춰 확인하고, 변경될 수 있는 내용은 공식 출처의 최신 안내를 다시 확인하세요.",
+  example: article.example ?? "최근 한 달 또는 최근 이용 기록을 기준으로 항목·날짜·금액을 표로 적은 뒤, 실제 지출과 예상 지출의 차이를 비교해 보세요.",
+  cautions: article.cautions?.length ? article.cautions : ["개인의 조건과 시점에 따라 비용·자격·이용 조건이 달라질 수 있으므로 실제 결정 전 최신 안내를 확인하세요.", "계약·안전·건강과 관련된 사항은 해당 기관이나 전문가의 구체적인 안내를 우선하세요."],
+  faqs: article.faqs?.length ? article.faqs : [{ question: "이 글의 내용을 그대로 적용해도 되나요?", answer: "이 글은 확인 순서를 정리한 일반 안내입니다. 개인의 계약·가구·차량·주거 조건에 따라 달라질 수 있으므로 관련 서류와 공식 안내를 함께 확인하세요." }, { question: "정보가 바뀌었는지 어떻게 확인하나요?", answer: "글 하단의 공식 출처와 최종 검토일을 확인하고, 실제 신청·결제·수리·예약 전에는 해당 기관이나 서비스의 최신 안내를 다시 살펴보세요." }],
+  sources: article.sources?.length ? article.sources : [fallbackSources[article.category] ?? fallbackSources["life-calculators"]],
+});
+
+export const articles: Article[] = [...seedArticles, ...expansionArticles].map(completeArticle);
 
 export const archivePageSize = 6;
 export const totalArticlePages = Math.ceil(articles.length / archivePageSize);
